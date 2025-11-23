@@ -1,14 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Welcome from './pages/Welcome.jsx';
+import Register from './pages/Register.jsx';
+import Login from './pages/Login.jsx';
 
 export default function App() {
   return (
-    <main style={{ padding: '2rem', maxWidth: 960, margin: '0 auto' }}>
-      <h1>No quiero hacer nada</h1>
-      <p>Nose. Servicio Comunitario</p>
-      <section>
-        <h2>AAAAAAAAA</h2>
-        <p>Half life 3 se anuncia en 2025</p>
-      </section>
-    </main>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/registro" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
