@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import fondoUsm from '../assets/images/fondousm.png';
+import logoUsmBlanco from '../assets/images/logousmblanco.png';
 
 export default function Register() {
   const [userType, setUserType] = useState(null);
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#edf4fe] relative">
-      {/* Botón volver al inicio */}
+    <div className="min-h-screen w-full bg-[#edf4fe] relative flex">
       <button
         className="absolute top-4 left-4 bg-[#1746b0] hover:bg-[#1746b0]/90 text-white font-semibold rounded-xl px-6 py-2 text-sm shadow transition-colors"
         onClick={() => navigate('/')}
@@ -15,13 +16,30 @@ export default function Register() {
       >
         ← Volver al inicio
       </button>
-      <div className="bg-white rounded-2xl shadow-lg px-4 py-2 w-full max-w-xl min-h-[10vh] flex flex-col justify-center">
-        <h2 className="text-2xl font-bold text-[#1e40af] mb-6 text-center">Registro</h2>
+      <div className="hidden md:flex w-1/2 relative overflow-hidden">
+        <img
+          src={fondoUsm}
+          alt="Campus USM"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0a3db4]/40" />
 
-        {/* Selección de tipo de usuario */}
+        <div className="absolute inset-0 bg-[#0a3db4]/70 clip-diagonal-left" />
+        <div className="absolute inset-0 flex flex-col justify-center pl-10 gap-4 text-white">
+          <img src={logoUsmBlanco} alt="Universidad Santa María" className="w-40" />
+          <p className="text-lg md:text-xl font-medium max-w-xs">
+            Registro para estudiantes y personal docente del Servicio Comunitario USM.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex-1 bg-[#f5f5f5] flex items-center justify-center p-8 overflow-y-auto">
+        <div className="w-full max-w-3xl flex flex-col justify-center">
+          <h2 className="text-2xl font-bold text-[#1e40af] mb-6 text-center">Registro</h2>
+
         {!userType && (
-          <div className="flex flex-col gap-4 items-center">
-            <span className="mb-2 text-gray-700">¿Cómo deseas registrarte?</span>
+          <div className="flex flex-col gap-4 items-center max-w-md mx-auto w-full">
+            <span className="mb-2 text-gray-700 text-lg">¿Cómo deseas registrarte?</span>
             <button
               className="bg-[#1746b0] hover:bg-[#1746b0]/90 text-white font-semibold rounded-xl px-8 py-2 text-base w-full"
               onClick={() => setUserType('estudiante')}
@@ -37,7 +55,6 @@ export default function Register() {
           </div>
         )}
 
-        {/* Formulario estudiantes */}
         {userType === 'estudiante' && (
           <div className="w-full">
             <h2 className="text-2xl font-bold text-[#1746b0] mb-1 text-center">Registro de Estudiantes</h2>
@@ -180,16 +197,17 @@ export default function Register() {
             </form>
           </div>
         )}
-        {/* Boton al login */}
-        <div className="mt-4 text-center flex flex-col gap-2 items-center">
-          <div>
-            <span className="text-sm text-gray-700">¿Ya tienes una cuenta? </span>
-            <button
-              className="text-[#1746b0] underline text-sm font-semibold"
-              onClick={() => navigate('/login')}
-            >
-              Inicia Sesión
-            </button>
+          {/* Boton al login */}
+          <div className="mt-4 text-center flex flex-col gap-2 items-center">
+            <div>
+              <span className="text-sm text-gray-700">¿Ya tienes una cuenta? </span>
+              <button
+                className="text-[#1746b0] underline text-sm font-semibold"
+                onClick={() => navigate('/login')}
+              >
+                Inicia Sesión
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import fondoUsm from '../assets/images/fondousm.png';
+import logoUsmBlanco from '../assets/images/logousmblanco.png';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -9,7 +11,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // AAutenticacion (pa luego)
+
     if (!email || !password) {
       setError('Por favor, completa todos los campos.');
       return;
@@ -20,8 +22,8 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#edf4fe] relative">
-      {/* Botón volver al inicoi */}
+    <div className="min-h-screen w-full bg-[#edf4fe] relative flex">
+
       <button
         className="absolute top-4 left-4 bg-[#1746b0] hover:bg-[#1746b0]/90 text-white font-semibold rounded-xl px-6 py-2 text-sm shadow transition-colors"
         onClick={() => navigate('/')}
@@ -29,9 +31,28 @@ export default function Login() {
       >
         ← Volver al inicio
       </button>
-      <div className="bg-white rounded-2xl shadow-lg px-6 py-8 w-full max-w-md flex flex-col justify-center">
-        <h2 className="text-2xl font-bold text-[#1746b0] mb-1 text-center">Iniciar Sesión</h2>
-        <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
+      <div className="hidden md:flex w-1/2 relative overflow-hidden">
+        <img
+          src={fondoUsm}
+          alt="Campus USM"
+          className="w-full h-full object-cover"
+        />
+        
+        <div className="absolute inset-0 bg-[#0a3db4]/40" />
+
+        <div className="absolute inset-0 bg-[#0a3db4]/70 clip-diagonal-left" />
+        <div className="absolute inset-0 flex flex-col justify-center pl-10 gap-4 text-white">
+          <img src={logoUsmBlanco} alt="Universidad Santa María" className="w-40" />
+          <p className="text-lg md:text-xl font-medium max-w-xs">
+            Plataforma de gestión de Servicio Comunitario de la Universidad Santa María.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex-1 bg-[#f5f5f5] flex items-center justify-center p-8">
+        <div className="w-full flex flex-col justify-center">
+          <h2 className="text-2xl font-bold text-[#1746b0] mb-1 text-center">Iniciar Sesión</h2>
+          <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Correo institucional"
@@ -55,17 +76,17 @@ export default function Login() {
           >
             Iniciar Sesión
           </button>
-        </form>
-        {/* Botón para ir a registro e inicio */}
-        <div className="mt-4 text-center flex flex-col gap-2 items-center">
-          <div>
-            <span className="text-sm text-gray-700">¿No tienes cuenta? </span>
-            <button
-              className="text-[#1746b0] underline text-sm font-semibold"
-              onClick={() => navigate('/registro')}
-            >
-              Regístrate aquí
-            </button>
+          </form>
+          <div className="mt-4 text-center flex flex-col gap-2 items-center">
+            <div>
+              <span className="text-sm text-gray-700">¿No tienes cuenta? </span>
+              <button
+                className="text-[#1746b0] underline text-sm font-semibold"
+                onClick={() => navigate('/register')}
+              >
+                Regístrate aquí
+              </button>
+            </div>
           </div>
         </div>
       </div>
