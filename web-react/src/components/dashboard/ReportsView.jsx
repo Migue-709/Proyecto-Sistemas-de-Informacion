@@ -43,15 +43,15 @@ export default function ReportsView() {
     <div className="max-w-[1600px] mx-auto p-8 space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-gray-900 mb-2">Reportes y Estadísticas</h1>
-          <p className="text-gray-600">
+          <h1 className="text-gray-900 dark:text-white mb-2">Reportes y Estadísticas</h1>
+          <p className="text-gray-600 dark:text-gray-400">
             Visualiza el progreso y desempeño de tu servicio comunitario cuando haya datos registrados.
           </p>
         </div>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30 hover:shadow-xl transition-all"
+          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/30 dark:shadow-blue-500/20 hover:shadow-xl transition-all"
         >
           <Download size={20} />
           <span>Exportar reporte</span>
@@ -67,41 +67,41 @@ export default function ReportsView() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="p-6 rounded-2xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all"
+              className="p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex items-start justify-between mb-4">
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                     stat.color === 'blue'
-                      ? 'bg-blue-50'
+                      ? 'bg-blue-50 dark:bg-blue-900/20'
                       : stat.color === 'green'
-                      ? 'bg-emerald-50'
+                      ? 'bg-emerald-50 dark:bg-emerald-900/20'
                       : stat.color === 'purple'
-                      ? 'bg-violet-50'
-                      : 'bg-amber-50'
+                      ? 'bg-violet-50 dark:bg-violet-900/20'
+                      : 'bg-amber-50 dark:bg-amber-900/20'
                   }`}
                 >
                   <Icon
                     className={
                       stat.color === 'blue'
-                        ? 'text-blue-600'
+                        ? 'text-blue-600 dark:text-blue-400'
                         : stat.color === 'green'
-                        ? 'text-emerald-600'
+                        ? 'text-emerald-600 dark:text-emerald-400'
                         : stat.color === 'purple'
-                        ? 'text-violet-600'
-                        : 'text-amber-500'
+                        ? 'text-violet-600 dark:text-violet-400'
+                        : 'text-amber-500 dark:text-amber-400'
                     }
                     size={24}
                   />
                 </div>
-                <span className="text-xs px-2 py-1 rounded-full bg-green-50 text-green-600 border border-green-200">
+                <span className="text-xs px-2 py-1 rounded-full bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border border-green-200 dark:border-green-800">
                   {stat.trend}
                 </span>
               </div>
-              <p className="text-gray-600 text-sm mb-1">{stat.label}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-1">{stat.label}</p>
               <div className="flex items-baseline gap-2">
-                <span className="text-gray-900 text-3xl">{stat.value}</span>
-                <span className="text-gray-500 text-sm">{stat.total}</span>
+                <span className="text-gray-900 dark:text-white text-3xl">{stat.value}</span>
+                <span className="text-gray-500 dark:text-gray-400 text-sm">{stat.total}</span>
               </div>
             </motion.div>
           );
@@ -113,21 +113,21 @@ export default function ReportsView() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="lg:col-span-2 p-6 rounded-2xl bg-white border border-gray-200 shadow-sm flex flex-col justify-between"
+          className="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col justify-between"
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-gray-900 mb-1">Progreso de horas por mes</h3>
-              <p className="text-sm text-gray-600">Aquí verás el acumulado de horas cuando existan registros.</p>
+              <h3 className="text-gray-900 dark:text-white mb-1">Progreso de horas por mes</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Aquí verás el acumulado de horas cuando existan registros.</p>
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <Calendar className="text-gray-400" size={16} />
-              <span className="text-gray-600">Rango de meses pendiente</span>
+              <Calendar className="text-gray-400 dark:text-gray-500" size={16} />
+              <span className="text-gray-600 dark:text-gray-400">Rango de meses pendiente</span>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center flex-1 text-gray-500 border border-dashed border-gray-200 rounded-2xl py-10">
-            <BarChart3 className="mb-3 text-gray-400" size={40} />
-            <p className="mb-1 text-gray-700">Aún no hay datos para mostrar este gráfico.</p>
+          <div className="flex flex-col items-center justify-center flex-1 text-gray-500 dark:text-gray-400 border border-dashed border-gray-200 dark:border-gray-700 rounded-2xl py-10">
+            <BarChart3 className="mb-3 text-gray-400 dark:text-gray-500" size={40} />
+            <p className="mb-1 text-gray-700 dark:text-gray-300">Aún no hay datos para mostrar este gráfico.</p>
             <p className="text-sm">Cuando registres tus horas, este gráfico se activará automáticamente.</p>
           </div>
         </motion.div>
@@ -138,10 +138,10 @@ export default function ReportsView() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="lg:col-span-2 p-6 rounded-2xl bg-white border border-gray-200 shadow-sm"
+          className="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm"
         >
-          <h3 className="text-gray-900 mb-4">Reportes recientes</h3>
-          <div className="rounded-2xl border border-dashed border-gray-200 p-6 text-center text-gray-500 text-sm">
+          <h3 className="text-gray-900 dark:text-white mb-4">Reportes recientes</h3>
+          <div className="rounded-2xl border border-dashed border-gray-200 dark:border-gray-700 p-6 text-center text-gray-500 dark:text-gray-400 text-sm">
             Aún no se ha generado ningún reporte. Cuando generes tus primeros reportes, se listarán aquí para consulta y
             descarga.
           </div>
@@ -151,37 +151,37 @@ export default function ReportsView() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 border border-blue-200"
+          className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 border border-blue-200 dark:border-blue-700/50"
         >
-          <h3 className="text-gray-900 mb-4">Generar reporte</h3>
+          <h3 className="text-gray-900 dark:text-white mb-4">Generar reporte</h3>
           <div className="space-y-3 text-sm">
-            <p className="text-gray-600 mb-2">
+            <p className="text-gray-600 dark:text-gray-400 mb-2">
               Aquí podrás elegir rápidamente qué tipo de reporte generar cuando haya datos disponibles.
             </p>
             <div className="grid gap-3">
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full p-4 rounded-xl bg-white text-left hover:shadow-md transition-all cursor-default"
+                className="w-full p-4 rounded-xl bg-white dark:bg-gray-800 text-left hover:shadow-md transition-all cursor-default"
               >
-                <p className="text-gray-900 mb-1">Reporte semanal</p>
-                <p className="text-xs text-gray-600">Últimos 7 días</p>
+                <p className="text-gray-900 dark:text-white mb-1">Reporte semanal</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Últimos 7 días</p>
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full p-4 rounded-xl bg-white text-left hover:shadow-md transition-all cursor-default"
+                className="w-full p-4 rounded-xl bg-white dark:bg-gray-800 text-left hover:shadow-md transition-all cursor-default"
               >
-                <p className="text-gray-900 mb-1">Reporte mensual</p>
-                <p className="text-xs text-gray-600">Mes actual</p>
+                <p className="text-gray-900 dark:text-white mb-1">Reporte mensual</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Mes actual</p>
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full p-4 rounded-xl bg-white text-left hover:shadow-md transition-all cursor-default"
+                className="w-full p-4 rounded-xl bg-white dark:bg-gray-800 text-left hover:shadow-md transition-all cursor-default"
               >
-                <p className="text-gray-900 mb-1">Reporte completo</p>
-                <p className="text-xs text-gray-600">Todo el período</p>
+                <p className="text-gray-900 dark:text-white mb-1">Reporte completo</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Todo el período</p>
               </motion.div>
             </div>
           </div>

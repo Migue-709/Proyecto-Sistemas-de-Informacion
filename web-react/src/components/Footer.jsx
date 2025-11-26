@@ -64,7 +64,7 @@ export default function FooterSection() {
             <ul className="space-y-3 text-sm text-gray-300">
               <li>
                 <span className="block text-gray-400 text-xs uppercase tracking-wide mb-1">Correo</span>
-                <span>tomasdestroyer01@usm.edu.ve</span>
+                <span>servicio.comunitario@usm.edu.ve</span>
               </li>
               <li>
                 <span className="block text-gray-400 text-xs uppercase tracking-wide mb-1">Teléfono</span>

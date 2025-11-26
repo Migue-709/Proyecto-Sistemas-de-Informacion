@@ -27,13 +27,13 @@ export default function ScheduleView() {
     <div className="max-w-[1600px] mx-auto p-8 space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-gray-900 mb-2">Cronograma de Actividades</h1>
-          <p className="text-gray-600">Planifica y visualiza tus actividades de servicio comunitario.</p>
+          <h1 className="text-gray-900 dark:text-white mb-2">Cronograma de Actividades</h1>
+          <p className="text-gray-600 dark:text-gray-400">Planifica y visualiza tus actividades de servicio comunitario.</p>
         </div>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30 hover:shadow-xl transition-all"
+          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/30 dark:shadow-blue-500/20 hover:shadow-xl transition-all"
         >
           <Plus size={20} />
           <span>Nueva Actividad</span>
@@ -45,10 +45,10 @@ export default function ScheduleView() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm"
+            className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm"
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-gray-900">
+              <h3 className="text-gray-900 dark:text-white">
                 {currentMonth.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
               </h3>
               <div className="flex items-center gap-2">
@@ -58,7 +58,7 @@ export default function ScheduleView() {
                   onClick={() =>
                     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))
                   }
-                  className="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                  className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 >
                   <ChevronLeft size={16} />
                 </motion.button>
@@ -68,7 +68,7 @@ export default function ScheduleView() {
                   onClick={() =>
                     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))
                   }
-                  className="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                  className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 >
                   <ChevronRight size={16} />
                 </motion.button>
@@ -77,7 +77,7 @@ export default function ScheduleView() {
 
             <div className="grid grid-cols-7 gap-2">
               {weekDays.map((day) => (
-                <div key={day} className="text-center text-sm text-gray-600 py-2">
+                <div key={day} className="text-center text-sm text-gray-600 dark:text-gray-400 py-2">
                   {day}
                 </div>
               ))}
@@ -87,7 +87,7 @@ export default function ScheduleView() {
                   key={index}
                   whileHover={day ? { scale: 1.05 } : {}}
                   className={`aspect-square rounded-lg flex items-center justify-center text-sm relative cursor-pointer transition-all ${
-                    day === null ? 'text-transparent' : 'text-gray-700 hover:bg-gray-50'
+                    day === null ? 'text-transparent' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                 >
                   {day}
@@ -95,36 +95,36 @@ export default function ScheduleView() {
               ))}
             </div>
 
-            <div className="flex items-center gap-4 mt-6 pt-6 border-t border-gray-200">
+            <div className="flex items-center gap-4 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-gray-200" />
-                <span className="text-sm text-gray-600">Calendario sin actividades registradas aún</span>
+                <div className="w-3 h-3 rounded-full bg-gray-200 dark:bg-gray-700" />
+                <span className="text-sm text-gray-600 dark:text-gray-400">Calendario sin actividades registradas aún</span>
               </div>
             </div>
           </motion.div>
         </div>
 
         <div className="lg:col-span-2 space-y-4">
-          <h3 className="text-gray-900">Próximas Actividades</h3>
+          <h3 className="text-gray-900 dark:text-white">Próximas Actividades</h3>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-5 rounded-2xl bg-white border border-dashed border-gray-200 text-center text-gray-500"
+            className="p-5 rounded-2xl bg-white dark:bg-gray-800 border border-dashed border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400"
           >
-            <CalendarIcon className="mx-auto mb-2 text-gray-400" size={24} />
+            <CalendarIcon className="mx-auto mb-2 text-gray-400 dark:text-gray-500" size={24} />
             <p>No hay actividades próximas registradas todavía.</p>
           </motion.div>
         </div>
       </div>
 
       <div>
-        <h3 className="text-gray-900 mb-4">Actividades Completadas</h3>
+        <h3 className="text-gray-900 dark:text-white mb-4">Actividades Completadas</h3>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="p-5 rounded-2xl bg-white border border-dashed border-gray-200 text-center text-gray-500"
+          className="p-5 rounded-2xl bg-white dark:bg-gray-800 border border-dashed border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400"
         >
-          <CalendarIcon className="mx-auto mb-2 text-gray-400" size={24} />
+          <CalendarIcon className="mx-auto mb-2 text-gray-400 dark:text-gray-500" size={24} />
           <p>Aún no se ha completado ninguna actividad.</p>
         </motion.div>
       </div>
