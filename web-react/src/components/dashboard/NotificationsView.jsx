@@ -8,7 +8,7 @@ export default function NotificationsView() {
 		<div className="max-w-[1400px] mx-auto p-8 space-y-8">
 			<div className="flex items-center justify-between flex-wrap gap-4">
 				<div>
-					<h1 className="text-gray-900 dark:text-white mb-2">Notificaciones</h1>
+					<h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Notificaciones</h1>
 					<p className="text-gray-600 dark:text-gray-400">
 						Aquí verás tus notificaciones y avisos.
 					</p>

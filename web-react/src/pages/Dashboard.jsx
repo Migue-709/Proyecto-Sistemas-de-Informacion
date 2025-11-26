@@ -16,6 +16,7 @@ import NotificationsView from '../components/dashboard/NotificationsView';
 
 export default function Dashboard() {
   const [activeSection, setActiveSection] = useState('overview');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const renderContent = () => {
     switch (activeSection) {
@@ -36,14 +37,14 @@ export default function Dashboard() {
       case 'overview':
       default:
         return (
-          <div className="max-w-[1600px] mx-auto p-8 space-y-8">
+          <div className="w-full max-w-[1600px] mx-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8 space-y-6 lg:space-y-8">
             <StatsCards />
-            <div className="grid lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-8">
+            <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
+              <div className="space-y-6 lg:space-y-8 lg:col-span-2">
                 <ProgressTracker />
                 <QuickActions />
               </div>
-              <div className="space-y-8">
+              <div className="space-y-6 lg:space-y-8">
                 <UpcomingTasks />
                 <RecentActivity />
               </div>
@@ -54,11 +55,37 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
-      <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <TopBar onSectionChange={setActiveSection} />
-        <main className="flex-1 overflow-y-auto">{renderContent()}</main>
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Sidebar desktop */}
+      <div className="hidden lg:flex">
+        <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+      </div>
+
+      {/* Sidebar telefono*/}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-40 flex lg:hidden">
+          <div
+            className="fixed inset-0 bg-black/40"
+            onClick={() => setSidebarOpen(false)}
+          />
+          <div className="relative z-50 w-72 max-w-full">
+            <Sidebar
+              activeSection={activeSection}
+              onSectionChange={(section) => {
+                setActiveSection(section);
+                setSidebarOpen(false);
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="flex-1 flex flex-col min-w-0">
+        <TopBar
+          onSectionChange={setActiveSection}
+          onToggleSidebar={() => setSidebarOpen((open) => !open)}
+        />
+        <main className="flex-1 overflow-y-auto pb-6 lg:pb-8">{renderContent()}</main>
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ export default function Sidebar({ activeSection, onSectionChange }) {
   ];
 
   return (
-    <div className="w-72 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col relative overflow-hidden">
+    <div className="w-72 h-full lg:h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/3 left-0 w-40 h-40 bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-3xl" />
 
@@ -81,8 +81,7 @@ export default function Sidebar({ activeSection, onSectionChange }) {
           </div>
         </div>
       </div>
-
-      <nav className="flex-1 px-4 space-y-1 relative z-10">
+  <nav className="flex-1 px-4 space-y-1 relative z-10 overflow-y-auto pb-4">
         <div className="mb-6">
           {mainNavItems.map((item) => (
             <NavItem

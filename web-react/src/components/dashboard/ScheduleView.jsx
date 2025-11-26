@@ -24,8 +24,8 @@ export default function ScheduleView() {
   };
 
   return (
-    <div className="max-w-[1600px] mx-auto p-8 space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="w-full max-w-[1600px] mx-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8 space-y-6 lg:space-y-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Cronograma de Actividades</h1>
           <p className="text-gray-600 dark:text-gray-400">Planifica y visualiza tus actividades de servicio comunitario.</p>

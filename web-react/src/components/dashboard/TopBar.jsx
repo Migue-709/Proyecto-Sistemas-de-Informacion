@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Bell, ChevronDown, Settings, HelpCircle, LogOut } from 'lucide-react';
+import { Search, Bell, ChevronDown, Settings, HelpCircle, LogOut, Menu } from 'lucide-react';
 
-export default function TopBar({ onSectionChange }) {
+export default function TopBar({ onSectionChange, onToggleSidebar }) {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const handleGoToConfiguration = () => {
@@ -16,19 +16,32 @@ export default function TopBar({ onSectionChange }) {
   };
 
   return (
-    <div className="h-20 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-8 sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-gray-800/80">
-      <div>
-        <h1 className="text-gray-900 dark:text-white mb-1">Bienvenido, Nombre del Usuario</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Rol o programa del usuario</p>
+    <div className="h-16 sm:h-20 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-4 sm:px-6 lg:px-8 sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-gray-800/80">
+      <div className="flex items-center gap-3 sm:gap-4">
+        {/* Botón menú telefono */}
+        <button
+          type="button"
+          onClick={onToggleSidebar}
+          className="inline-flex items-center justify-center rounded-xl p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 lg:hidden"
+        >
+          <Menu size={20} />
+        </button>
+
+        <div>
+          <h1 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 dark:text-white mb-0.5">
+            Bienvenido, Nombre del Usuario
+          </h1>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Rol o programa del usuario</p>
+        </div>
       </div>
 
-      <div className="flex items-center gap-4 relative">
-        <div className="relative">
+      <div className="flex items-center gap-3 sm:gap-4 relative">
+        <div className="relative hidden sm:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={18} />
           <input
             type="text"
             placeholder="Buscar..."
-            className="w-80 pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all duration-300"
+            className="w-56 md:w-72 lg:w-80 pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all duration-300"
           />
         </div>
 
