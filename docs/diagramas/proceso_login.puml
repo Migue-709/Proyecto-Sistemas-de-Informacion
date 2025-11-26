@@ -1,0 +1,52 @@
+@startuml Proceso_Login
+!theme plain
+title Proceso de Inicio de Sesión - Sistema Servicio Comunitario USM
+
+|Usuario|
+start
+:Acceder a /login;
+
+|Sistema|
+:Mostrar pantalla de login;
+:Mostrar formulario con:
+- Campo correo institucional
+- Campo contraseña
+- Botón "Iniciar Sesión"
+- Enlace a registro;
+
+|Usuario|
+:Ingresar correo institucional;
+:Ingresar contraseña;
+:Clic en "Iniciar Sesión";
+
+|Sistema|
+if (¿Campos completos?) then (Sí)
+  :Validar credenciales;
+  
+  if (¿Credenciales válidas?) then (Sí)
+    :Crear sesión de usuario;
+    :Redirigir a /dashboard;
+    :Cargar panel principal;
+  else (No)
+    :Mostrar mensaje de error;
+    |Usuario|
+    :Corregir credenciales;
+  endif
+  
+else (No)
+  :Mostrar error:\n"Completa todos los campos";
+  |Usuario|
+  :Completar campos faltantes;
+endif
+
+|Sistema|
+:Sesión iniciada;
+stop
+
+note right
+  Opciones adicionales:
+  - Volver al inicio (/)
+  - Ir a registro (/register)
+end note
+
+@enduml

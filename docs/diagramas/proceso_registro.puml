@@ -1,0 +1,65 @@
+@startuml Proceso_Registro
+!theme plain
+title Proceso de Registro de Usuario - Sistema Servicio Comunitario USM
+
+|Usuario|
+start
+:Acceder a /register;
+
+|Sistema|
+:Mostrar pantalla de registro;
+:Mostrar opciones:\n- Estudiante\n- Docente/Coordinador;
+
+|Usuario|
+:Seleccionar tipo de usuario;
+
+if (¿Tipo seleccionado?) then (Estudiante)
+  |Sistema|
+  :Mostrar formulario estudiante;
+  
+  |Usuario|
+  :Completar campos:
+  - Cédula de Identidad
+  - Teléfono
+  - Nombres
+  - Apellidos
+  - Correo Electrónico
+  - Carrera
+  - Semestre Actual;
+  
+else (Docente)
+  |Sistema|
+  :Mostrar formulario docente;
+  :Mostrar mensaje informativo\n(registro exclusivo para docentes);
+  
+  |Usuario|
+  :Completar campos:
+  - Cédula de Identidad
+  - Teléfono
+  - Nombres
+  - Apellidos
+  - Correo Institucional
+  - Rol/Cargo
+  - Departamento/Escuela;
+endif
+
+|Usuario|
+:Clic en "Registrar";
+
+|Sistema|
+if (¿Datos válidos?) then (Sí)
+  :Crear cuenta de usuario;
+  :Almacenar información;
+  :Notificar registro exitoso;
+else (No)
+  :Mostrar errores de validación;
+  |Usuario|
+  :Corregir datos;
+  :Reenviar formulario;
+endif
+
+|Sistema|
+:Registro completado;
+stop
+
+@enduml

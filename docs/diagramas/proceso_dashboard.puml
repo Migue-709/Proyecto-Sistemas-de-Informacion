@@ -1,0 +1,59 @@
+@startuml Proceso_Dashboard
+!theme plain
+title Proceso de Navegación del Dashboard - Sistema Servicio Comunitario USM
+
+|Usuario|
+start
+:Acceder a /dashboard;
+
+|Sistema|
+:Cargar Dashboard;
+:Mostrar Sidebar y TopBar;
+:Cargar vista Overview (por defecto);
+
+|Vista Overview|
+:Mostrar StatsCards\n(Horas, Tareas, Progreso, Días);
+:Mostrar ProgressTracker\n(Seguimiento del servicio);
+:Mostrar QuickActions\n(Acciones rápidas);
+:Mostrar UpcomingTasks\n(Próximas tareas);
+:Mostrar RecentActivity\n(Actividad reciente);
+
+|Usuario|
+:Seleccionar sección del Sidebar;
+
+|Sistema|
+switch (Sección seleccionada)
+case (Dashboard)
+  :Cargar Overview;
+case (Documentos)
+  :Cargar DocumentsView;
+case (Cronograma)
+  :Cargar ScheduleView;
+case (Instituciones)
+  :Cargar InstitutionsView;
+case (Reportes)
+  :Cargar ReportsView;
+case (Configuración)
+  :Cargar ConfigurationView;
+case (Ayuda)
+  :Cargar HelpView;
+case (Notificaciones)
+  :Cargar NotificationsView;
+endswitch
+
+|Usuario|
+:Interactuar con la vista;
+
+|Sistema|
+:Procesar acciones del usuario;
+
+if (¿Cerrar sesión?) then (Sí)
+  :Cerrar sesión;
+  :Redirigir a /login;
+else (No)
+  :Continuar en Dashboard;
+endif
+
+stop
+
+@enduml
