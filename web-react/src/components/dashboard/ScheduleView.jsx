@@ -27,7 +27,7 @@ export default function ScheduleView() {
     <div className="max-w-[1600px] mx-auto p-8 space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-gray-900 dark:text-white mb-2">Cronograma de Actividades</h1>
+          <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Cronograma de Actividades</h1>
           <p className="text-gray-600 dark:text-gray-400">Planifica y visualiza tus actividades de servicio comunitario.</p>
         </div>
         <motion.button

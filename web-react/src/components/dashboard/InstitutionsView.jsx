@@ -8,7 +8,7 @@ export default function InstitutionsView() {
 		<div className="max-w-[1600px] mx-auto p-8 space-y-8">
 			<div className="flex items-center justify-between gap-4 flex-wrap">
 				<div>
-					<h1 className="text-gray-900 dark:text-white mb-2">Instituciones</h1>
+					<h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Instituciones</h1>
 					<p className="text-gray-600 dark:text-gray-400">
 						Información sobre instituciones disponibles para el servicio comunitario.
 					</p>

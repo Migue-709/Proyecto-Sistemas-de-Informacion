@@ -116,7 +116,7 @@ export default function HelpView() {
         >
           <HelpCircle className="text-white" size={40} />
         </motion.div>
-        <h1 className="text-gray-900 dark:text-white mb-2">Centro de Ayuda</h1>
+        <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Centro de Ayuda</h1>
         <p className="text-gray-600 dark:text-gray-400">¿En qué podemos ayudarte hoy?</p>
       </div>
 

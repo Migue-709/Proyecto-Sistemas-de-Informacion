@@ -17,7 +17,7 @@ export default function ConfigurationView() {
   return (
     <div className="max-w-[1200px] mx-auto p-8 space-y-8">
       <div>
-        <h1 className="text-gray-900 dark:text-white mb-2">Configuración</h1>
+        <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Configuración</h1>
         <p className="text-gray-600 dark:text-gray-400">Personaliza tu experiencia y preferencias del sistema.</p>
       </div>
 
