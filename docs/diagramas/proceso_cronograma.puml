@@ -1,0 +1,70 @@
+@startuml Proceso_Cronograma
+!theme plain
+title Proceso de Gestión de Cronograma - Sistema Servicio Comunitario USM
+
+|Usuario|
+start
+:Acceder a sección Cronograma;
+
+|Sistema|
+:Cargar ScheduleView;
+:Mostrar calendario del mes actual;
+:Mostrar sección "Próximas Actividades";
+:Mostrar sección "Actividades Completadas";
+
+|Usuario|
+if (¿Qué acción realizar?) then (Navegar calendario)
+  :Clic en flechas de navegación;
+  
+  |Sistema|
+  :Cambiar mes (anterior/siguiente);
+  :Actualizar vista del calendario;
+  
+else (Nueva actividad)
+  :Clic en "Nueva Actividad";
+  
+  |Sistema|
+  :Abrir formulario de actividad;
+  
+  |Usuario|
+  :Completar datos de actividad:
+  - Título
+  - Descripción
+  - Fecha
+  - Hora;
+  
+  :Clic en "Guardar";
+  
+  |Sistema|
+  if (¿Datos válidos?) then (Sí)
+    :Crear actividad;
+    :Agregar al calendario;
+    :Actualizar lista próximas actividades;
+  else (No)
+    :Mostrar errores;
+  endif
+  
+else (Seleccionar día)
+  :Clic en día del calendario;
+  
+  |Sistema|
+  :Mostrar actividades del día;
+  
+else (Ver actividad)
+  :Clic en actividad existente;
+  
+  |Sistema|
+  :Mostrar detalles de actividad;
+  
+endif
+
+|Sistema|
+:Acción completada;
+stop
+
+note right
+  Días de la semana:
+  Dom, Lun, Mar, Mié, Jue, Vie, Sáb
+end note
+
+@enduml

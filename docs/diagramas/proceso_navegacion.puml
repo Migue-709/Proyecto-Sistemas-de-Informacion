@@ -1,0 +1,37 @@
+@startuml Proceso_Navegacion_General
+!theme plain
+title Proceso de Navegación General - Sistema Servicio Comunitario USM
+
+|Usuario|
+start
+:Acceder a la aplicación;
+
+|Sistema|
+:Cargar página Welcome;
+:Mostrar Navbar, Hero, Features,\nPasos del proceso, Tipos de usuario, Footer;
+
+|Usuario|
+if (¿Tiene cuenta?) then (Sí)
+  :Clic en "Iniciar Sesión";
+  |Sistema|
+  :Navegar a /login;
+else (No)
+  :Clic en "Comenzar" o "Registro";
+  |Sistema|
+  :Navegar a /register;
+endif
+
+|Usuario|
+if (¿Autenticación exitosa?) then (Sí)
+  |Sistema|
+  :Navegar a /dashboard;
+  :Cargar Dashboard con\nsecciones disponibles;
+else (No)
+  :Mostrar error o\npermanecer en formulario;
+endif
+
+|Sistema|
+:Usuario accede al sistema;
+stop
+
+@enduml

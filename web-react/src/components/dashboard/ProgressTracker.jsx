@@ -29,20 +29,20 @@ function ProgressStep({ title, description, status, date, isLast }) {
 
   return (
     <div className="relative flex gap-4">
-      {!isLast && <div className="absolute left-3 top-8 w-0.5 h-full bg-gradient-to-b from-gray-200 to-transparent" />}
+      {!isLast && <div className="absolute left-3 top-8 w-0.5 h-full bg-gradient-to-b from-gray-200 dark:from-gray-700 to-transparent" />}
 
       <div className="relative z-10 w-6 h-6 flex-shrink-0 mt-1">{getIcon()}</div>
 
       <div className="flex-1 pb-8">
         <div className="flex items-start justify-between mb-1">
-          <h4 className="text-gray-900">{title}</h4>
-          {date && <span className="text-xs text-gray-500">{date}</span>}
+          <h4 className="text-gray-900 dark:text-white">{title}</h4>
+          {date && <span className="text-xs text-gray-500 dark:text-gray-400">{date}</span>}
         </div>
-        <p className="text-sm text-gray-600 mb-2">{description}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{description}</p>
 
         {status === 'in-progress' && (
           <div className="flex items-center gap-2 mt-3">
-            <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div className="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: '60%' }}
@@ -50,7 +50,7 @@ function ProgressStep({ title, description, status, date, isLast }) {
                 className={`h-full bg-gradient-to-r ${getStatusColor()}`}
               />
             </div>
-            <span className="text-xs text-gray-600">60%</span>
+            <span className="text-xs text-gray-600 dark:text-gray-400">60%</span>
           </div>
         )}
       </div>
@@ -66,19 +66,19 @@ export default function ProgressTracker() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm"
+      className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-gray-900 mb-1">Progreso del Servicio</h3>
-          <p className="text-sm text-gray-600">Seguimiento de tus actividades y logros</p>
+          <h3 className="text-gray-900 dark:text-white mb-1">Progreso del Servicio</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Seguimiento de tus actividades y logros</p>
         </div>
       </div>
 
       {steps.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-8">
-          <AlertCircle className="text-blue-400 mb-2" size={32} />
-          <p className="text-gray-500 text-center">Aún no has iniciado el servicio comunitario.<br/>Cuando lo hagas, verás tu progreso aquí.</p>
+          <AlertCircle className="text-blue-400 dark:text-blue-500 mb-2" size={32} />
+          <p className="text-gray-500 dark:text-gray-400 text-center">Aún no has iniciado el servicio comunitario.<br/>Cuando lo hagas, verás tu progreso aquí.</p>
         </div>
       ) : (
         <div className="space-y-1">

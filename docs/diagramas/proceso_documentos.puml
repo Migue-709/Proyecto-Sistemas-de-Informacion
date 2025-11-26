@@ -1,0 +1,87 @@
+@startuml Proceso_Documentos
+!theme plain
+title Proceso de Gestión de Documentos - Sistema Servicio Comunitario USM
+
+|Usuario|
+start
+:Acceder a sección Documentos;
+
+|Sistema|
+:Cargar DocumentsView;
+:Mostrar estadísticas:
+- Total documentos
+- Pendientes de revisión
+- Aprobados
+- Rechazados;
+:Mostrar tabla de documentos;
+
+|Usuario|
+if (¿Qué acción realizar?) then (Subir documento)
+  :Clic en "Subir Documento";
+  
+  |Sistema|
+  :Abrir selector de archivos;
+  :Formatos permitidos:\nPDF, DOC, DOCX, JPG, PNG\n(Máx. 10MB);
+  
+  |Usuario|
+  :Seleccionar archivo;
+  
+  |Sistema|
+  if (¿Archivo válido?) then (Sí)
+    :Subir documento;
+    :Actualizar lista;
+    :Estado inicial: Pendiente;
+  else (No)
+    :Mostrar error de validación;
+  endif
+  
+else (Filtrar documentos)
+  :Seleccionar filtro:
+  - Todos
+  - Pendientes
+  - Aprobados
+  - Rechazados;
+  
+  |Sistema|
+  :Filtrar y mostrar documentos;
+  
+else (Buscar documento)
+  :Ingresar texto de búsqueda;
+  
+  |Sistema|
+  :Filtrar por nombre;
+  :Actualizar tabla;
+  
+else (Ver documento)
+  :Clic en icono "Ver";
+  
+  |Sistema|
+  :Mostrar documento;
+  
+else (Descargar documento)
+  :Clic en icono "Descargar";
+  
+  |Sistema|
+  :Iniciar descarga;
+  
+else (Eliminar documento)
+  :Clic en icono "Eliminar";
+  
+  |Sistema|
+  :Eliminar documento;
+  :Actualizar lista;
+  
+endif
+
+|Sistema|
+:Acción completada;
+stop
+
+note right
+  Estados de documentos:
+  - Aprobado (verde)
+  - Pendiente (amarillo)
+  - Rechazado (rojo)
+end note
+
+@enduml

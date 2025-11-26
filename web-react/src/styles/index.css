@@ -4,6 +4,8 @@
 
 @import "./floating-circles.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -14,8 +16,16 @@
   border-radius: 4px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #3b82f6;
+}
+
 ::-webkit-scrollbar-track {
   background-color: #e2e8f0;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: #1f2937;
 }
 
 body {
@@ -25,10 +35,27 @@ body {
   background: radial-gradient(circle at top left, #e0f2fe, #ffffff 40%),
     radial-gradient(circle at bottom right, #f3e8ff, #ffffff 40%);
   min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
-  background: radial-gradient(circle at top left, #020617, #020617 40%),
-    radial-gradient(circle at bottom right, #020617, #020617 40%);
+  background: radial-gradient(circle at top left, #0c1929, #111827 40%),
+    radial-gradient(circle at bottom right, #1a1625, #111827 40%);
   color: #e5e7eb;
+}
+
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.dark button:hover {
+  filter: brightness(1.1);
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
