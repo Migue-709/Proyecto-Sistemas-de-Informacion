@@ -1,0 +1,10 @@
+flowchart TD
+  Start((Enter Cronograma)) -->  ClickNew["Click 'Nueva Actividad'"]
+  ClickNew -->  Fill["Fill activity details (title, date, duration)"]
+  Fill -->  Validate{"Data Valid?"}
+  Validate -- No -->  ShowErr["Show validation errors"]
+  Validate -- Yes -->  POSTAct["POST /api/activities (payload)"]
+  POSTAct -->  Resp{Server Response}
+  Resp -- 201 -->  Created["Activity created (status: scheduled)"]
+  Created -->  Calendar["Show in calendar"]
+  Calendar -->  End((End))

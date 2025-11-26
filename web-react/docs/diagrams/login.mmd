@@ -1,0 +1,9 @@
+flowchart TD
+  Start((Open /login)) --> Fill["Fill email → password (inputs)"]
+  Fill --> Submit["Submit (onSubmit → handleSubmit)"]
+  Submit --> Validate{"Email & Password filled?"}
+  Validate -- No --> Missing["Show 'Por favor, completa todos los campos.'"]
+  Validate -- Yes --> POST["POST /api/auth/login (payload)"]
+  POST --> Resp{Server Response}
+  Resp -- 200 --> SaveToken["Store token, set auth state"] --> Redirect["Navigate to /dashboard"] --> End((End))
+  Resp -- 401/403 --> ShowFailed["Show 'Credenciales inválidas'"]

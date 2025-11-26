@@ -1,0 +1,6 @@
+flowchart TD
+  Start((Open Notifications center)) -->  GET["GET /api/notifications?recipientId"]
+  GET -->  List["Display notifications list"]
+  List -->  Click["User clicks notification -> mark as read"]
+  Click -->  PATCH["PATCH /api/notifications/:id { readAt }"]
+  PATCH -->  Updated["Notification state updated -> read"] -->  End((End))

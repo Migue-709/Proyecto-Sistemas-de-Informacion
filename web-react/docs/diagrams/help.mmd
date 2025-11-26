@@ -1,0 +1,7 @@
+flowchart TD
+  Start((Open Help)) -->  Search["User enters search query"]
+  Search -->  Filter["Filter local FAQs or call GET /api/faqs?query"]
+  Filter -->  Result{"FAQ found?"}
+  Result -- Yes -->  ShowAnswer["Show answer block"]
+  Result -- No -->  OfferContact["Show contact option or 'Contact Support'"]
+  OfferContact -->  SendSupport["POST /api/support/requests"] -->  End((End))

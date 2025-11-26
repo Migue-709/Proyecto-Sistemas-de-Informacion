@@ -1,0 +1,13 @@
+flowchart TD
+  Start((Open Project/Institution detail)) -->  Apply["Click 'Postular' -> open apply form"]
+  Apply -->  Fill["Fill motivation, upload docs (optional)"]
+  Fill -->  Validate{"Data valid?"}
+  Validate -- No -->  ShowErr["Show validation errors"]
+  Validate -- Yes -->  POSTApply["POST /api/projects/:projectId/apply"]
+  POSTApply -->  Resp{Server Response}
+  Resp -- 201 -->  Submitted["Application created (status: submitted)"]
+  Submitted -->  Review["Coordinator review application"]
+  Review -- Accept -->  Accept["PATCH /api/applications/:id -> accepted  assign student"]
+  Review -- Reject -->  Reject["PATCH /api/applications/:id -> rejected"]
+  Accept -->  End((End))
+  Reject -->  End
