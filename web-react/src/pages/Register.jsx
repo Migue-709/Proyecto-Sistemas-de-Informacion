@@ -3,8 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import fondoUsm from '../assets/images/fondousm.png';
 import logoUsmBlanco from '../assets/images/logousmblanco.png';
 
+
 export default function Register() {
   const [userType, setUserType] = useState(null);
+  const [studentEmail, setStudentEmail] = useState("");
+  const [studentEmailError, setStudentEmailError] = useState("");
+  const [docenteEmail, setDocenteEmail] = useState("");
+  const [docenteEmailError, setDocenteEmailError] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -63,7 +68,11 @@ export default function Register() {
               className="bg-white rounded-2xl shadow p-1 md:p-3 w-full flex flex-col gap-3"
               onSubmit={e => {
                 e.preventDefault();
-                // registro simulado mientras
+                if (!studentEmail.endsWith("@usm.edu.ve")) {
+                  setStudentEmailError("El correo debe ser institucional (@usm.edu.ve)");
+                  return;
+                }
+                setStudentEmailError("");
                 navigate('/dashboard');
               }}
             >
@@ -87,7 +96,17 @@ export default function Register() {
                 </div>
                 <div className="flex flex-col md:col-span-2">
                   <label className="text-sm font-semibold mb-0.5">Correo Electrónico *</label>
-                  <input type="email" placeholder="tucorreo@usm.edu.ve" className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm" required />
+                  <input
+                    type="email"
+                    placeholder="tucorreo@usm.edu.ve"
+                    className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm"
+                    required
+                    value={studentEmail}
+                    onChange={e => setStudentEmail(e.target.value)}
+                  />
+                  {studentEmailError && (
+                    <span className="text-xs text-red-600 mt-1">{studentEmailError}</span>
+                  )}
                 </div>
                 <div className="flex flex-col">
                   <label className="text-sm font-semibold mb-0.5">Carrera *</label>
@@ -137,7 +156,11 @@ export default function Register() {
               className="bg-white rounded-2xl shadow p-1 md:p-6 w-full flex flex-col gap-3"
               onSubmit={e => {
                 e.preventDefault();
-                // registro simulado mientras tanto
+                if (!docenteEmail.endsWith("@usm.edu.ve")) {
+                  setDocenteEmailError("El correo debe ser institucional (@usm.edu.ve)");
+                  return;
+                }
+                setDocenteEmailError("");
                 navigate('/dashboard');
               }}
             >
@@ -164,7 +187,26 @@ export default function Register() {
                 </div>
                 <div className="flex flex-col md:col-span-2">
                   <label className="text-sm font-semibold mb-0.5">Correo Electrónico Institucional *</label>
-                  <input type="email" placeholder="correo@usm.edu.ve" className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm" required />
+                  <input
+                    type="email"
+                    placeholder="correo@usm.edu.ve"
+                    className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm"
+                    required
+                    value={docenteEmail}
+                    onChange={e => setDocenteEmail(e.target.value)}
+                  />
+                  {docenteEmailError && (
+                    <span className="text-xs text-red-600 mt-1">{docenteEmailError}</span>
+                  )}
+                </div>
+                <div className="flex flex-col md:col-span-2">
+                  <label className="text-sm font-semibold mb-0.5">Código de Registro *</label>
+                  <input
+                    type="text"
+                    placeholder="Ingrese el código de registro"
+                    className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm"
+                    required
+                  />
                 </div>
                 <div className="flex flex-col">
                   <label className="text-sm font-semibold mb-0.5">Rol / Cargo *</label>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import fondoUsm from '../assets/images/fondousm.png';
 import logoUsmBlanco from '../assets/images/logousmblanco.png';
 
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,6 +15,10 @@ export default function Login() {
 
     if (!email || !password) {
       setError('Por favor, completa todos los campos.');
+      return;
+    }
+    if (!email.endsWith('@usm.edu.ve')) {
+      setError('El correo debe ser institucional (@usm.edu.ve)');
       return;
     }
     setError('');
