@@ -45,19 +45,19 @@ function NavItem({ icon: Icon, label, active, badge, onClick }) {
   );
 }
 
-export default function Sidebar() {
-  const [activeItem, setActiveItem] = useState('dashboard');
+export default function Sidebar({ activeSection, onSectionChange }) {
+  const [activeItem, setActiveItem] = useState(activeSection || 'dashboard');
 
   const mainNavItems = [
     { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { id: 'documents', icon: FileText, label: 'Documentos', badge: 'N' },
     { id: 'schedule', icon: Calendar, label: 'Cronograma' },
-    { id: 'projects', icon: Users, label: 'Proyectos' },
+    { id: 'institutions', icon: Users, label: 'Instituciones' },
     { id: 'reports', icon: BarChart3, label: 'Reportes' },
   ];
 
   const secondaryNavItems = [
-    { id: 'settings', icon: Settings, label: 'Configuración' },
+    { id: 'configuration', icon: Settings, label: 'Configuración' },
     { id: 'help', icon: HelpCircle, label: 'Ayuda' },
   ];
 
@@ -91,7 +91,19 @@ export default function Sidebar() {
               label={item.label}
               active={activeItem === item.id}
               badge={item.badge}
-              onClick={() => setActiveItem(item.id)}
+              onClick={() => {
+                setActiveItem(item.id);
+                if (onSectionChange) {
+                  const map = {
+                    dashboard: 'overview',
+                    documents: 'documents',
+                    schedule: 'schedule',
+                    institutions: 'institutions',
+                    reports: 'reports',
+                  };
+                  onSectionChange(map[item.id] || 'overview');
+                }
+              }}
             />
           ))}
         </div>
@@ -103,7 +115,16 @@ export default function Sidebar() {
               icon={item.icon}
               label={item.label}
               active={activeItem === item.id}
-              onClick={() => setActiveItem(item.id)}
+              onClick={() => {
+                setActiveItem(item.id);
+                if (onSectionChange) {
+                  const map = {
+                    configuration: 'configuration',
+                    help: 'help',
+                  };
+                  onSectionChange(map[item.id] || 'overview');
+                }
+              }}
             />
           ))}
         </div>
