@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, Bell, ChevronDown, Settings, HelpCircle, LogOut, Menu } from 'lucide-react';
 
-export default function TopBar({ onSectionChange, onToggleSidebar }) {
+function TopBar({ onSectionChange, onToggleSidebar }) {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const navigate = useNavigate();
 
   const handleGoToConfiguration = () => {
     onSectionChange && onSectionChange('configuration');
@@ -123,6 +125,7 @@ export default function TopBar({ onSectionChange, onToggleSidebar }) {
                 <button
                   type="button"
                   className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all text-sm"
+                  onClick={() => navigate('/')}
                 >
                   <LogOut size={18} />
                   <span>Cerrar sesión</span>
@@ -132,6 +135,9 @@ export default function TopBar({ onSectionChange, onToggleSidebar }) {
           )}
         </div>
       </div>
+
     </div>
   );
 }
+
+export default TopBar;

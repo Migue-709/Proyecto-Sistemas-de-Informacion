@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -47,6 +48,7 @@ function NavItem({ icon: Icon, label, active, badge, onClick }) {
 
 export default function Sidebar({ activeSection, onSectionChange }) {
   const [activeItem, setActiveItem] = useState(activeSection || 'dashboard');
+  const navigate = useNavigate();
 
   const mainNavItems = [
     { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -148,6 +150,7 @@ export default function Sidebar({ activeSection, onSectionChange }) {
           whileHover={{ x: 4 }}
           whileTap={{ scale: 0.98 }}
           className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all duration-300 group"
+          onClick={() => navigate('/')}
         >
           <LogOut size={20} className="text-gray-500 dark:text-gray-400 group-hover:text-red-600 dark:group-hover:text-red-400" />
           <span className="flex-1 text-left">Cerrar Sesión</span>

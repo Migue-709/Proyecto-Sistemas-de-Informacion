@@ -18,7 +18,8 @@ export default function Login() {
     }
     setError('');
 
-    alert('Inicio de sesión exitoso');
+    // Inicio de sesión exitoso simulado mientras tanto
+    navigate('/dashboard');
   };
 
   return (
@@ -56,7 +57,7 @@ export default function Login() {
           <input
             type="email"
             placeholder="Correo institucional"
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1746b0]"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1746b0] dark:text-black"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
@@ -64,7 +65,7 @@ export default function Login() {
           <input
             type="password"
             placeholder="Contraseña"
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1746b0]"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1746b0] dark:text-black"
             value={password}
             onChange={e => setPassword(e.target.value)}
             required

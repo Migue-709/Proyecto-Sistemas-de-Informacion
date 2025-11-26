@@ -59,9 +59,16 @@ export default function Register() {
           <div className="w-full">
             <h2 className="text-2xl font-bold text-[#1746b0] mb-1 text-center">Registro de Estudiantes</h2>
             <p className="text-center text-[#1746b0] mb-3">Servicio Comunitario - Universidad Santa María</p>
-            <form className="bg-white rounded-2xl shadow p-1 md:p-3 w-full flex flex-col gap-3">
+            <form
+              className="bg-white rounded-2xl shadow p-1 md:p-3 w-full flex flex-col gap-3"
+              onSubmit={e => {
+                e.preventDefault();
+                // registro simulado mientras
+                navigate('/dashboard');
+              }}
+            >
               <h3 className="text-xl font-bold text-[#1746b0] mb-1 text-center">Formulario de Inscripción</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 dark:text-black">
                 <div className="flex flex-col">
                   <label className="text-sm font-semibold mb-0.5">Cédula de Identidad *</label>
                   <input type="text" placeholder="V-12345678" className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm" required />
@@ -86,14 +93,10 @@ export default function Register() {
                   <label className="text-sm font-semibold mb-0.5">Carrera *</label>
                   <select className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm" required>
                     <option value="">Selecciona tu carrera</option>
-                    <option>Derecho</option>
-                    <option>Ingeniería de Sistemas</option>
-                    <option>Ingeniería Civil</option>
                     <option>Comunicación Social</option>
                     <option>Administración</option>
                     <option>Contaduría</option>
                     <option>Economía</option>
-                    <option>Otra</option>
                   </select>
                 </div>
                 <div className="flex flex-col">
@@ -130,13 +133,20 @@ export default function Register() {
           <div className="w-full">
             <h2 className="text-2xl font-bold text-[#1746b0] mb-1 text-center">Registro de Personal Docente</h2>
             <p className="text-center text-[#1746b0] mb-2 text-sm">Coordinadores, Supervisores y Tutores - USM</p>
-            <form className="bg-white rounded-2xl shadow p-1 md:p-6 w-full flex flex-col gap-3">
+            <form
+              className="bg-white rounded-2xl shadow p-1 md:p-6 w-full flex flex-col gap-3"
+              onSubmit={e => {
+                e.preventDefault();
+                // registro simulado mientras tanto
+                navigate('/dashboard');
+              }}
+            >
               <div className="bg-blue-100 text-blue-800 text-xs rounded-md px-3 py-2 mb-2 flex items-center gap-2">
                 <span className="text-base">ℹ️</span>
                 Este registro es exclusivo para docentes, coordinadores, supervisores y autoridades que gestionarán el servicio comunitario.
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <div className="flex flex-col">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 dark:text-black">
+                <div className="flex flex-col ">
                   <label className="text-sm font-semibold mb-0.5">Cédula de Identidad *</label>
                   <input type="text" placeholder="V-12345678" className="border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#1746b0] bg-[#f6f8fa] text-sm" required />
                 </div>
