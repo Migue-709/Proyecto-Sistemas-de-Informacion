@@ -1,6 +1,0 @@
-flowchart TD
-  Start((User clicks QuickAction)) -->  ActionCheck{"Which action? (QuickAction)"}
-  ActionCheck -- Subir Documento -->  Docs["Open upload modal -> Document Management flow"]
-  ActionCheck -- Agendar Actividad -->  Schedule["Open create activity modal -> Schedule flow"]
-  ActionCheck -- Nuevo Reporte -->  Reports["Open report generator -> Reports flow"]
-  ActionCheck -- Solicitar Ayuda -->  Support["Open support modal -> POST /api/support/requests"]

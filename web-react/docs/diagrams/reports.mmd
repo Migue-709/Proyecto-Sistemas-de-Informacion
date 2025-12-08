@@ -1,8 +1,0 @@
-flowchart TD
-  Start((Open Reports view)) -->  Choose["Choose report type + period"]
-  Choose -->  CheckData{"Is there data?"}
-  CheckData -- No -->  ShowNoData["Show 'No data' message"]
-  CheckData -- Yes -->  Generate["POST /api/reports/generate (payload)"]
-  Generate -->  ServerResp{Server response}
-  ServerResp -- ok -->  Ready["Report ready (url)"]
-  Ready -->  Download["GET /api/reports/:id/download"] -->  End((End))

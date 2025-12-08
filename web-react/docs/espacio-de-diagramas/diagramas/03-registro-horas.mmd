@@ -1,0 +1,70 @@
+%% Diagrama 3: Registro y validación de horas/actividades
+%% Objetivo: Detallar cómo el estudiante reporta horas, el tutor valida y coordinación consolida.
+%% Roles: Estudiante, Tutor/Profesor, Coordinación, Sistema.
+
+flowchart LR
+  %% Estilos
+  classDef human fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+  classDef coord fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+  classDef system fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+  classDef decision fill:#fff,stroke:#333,stroke-width:2px;
+  classDef data fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,shape:cylinder;
+  classDef io fill:#e0f7fa,stroke:#006064,stroke-width:2px,stroke-dasharray: 5 5;
+
+  subgraph EST[Estudiante]
+    E0([Inicio / Proyecto Activo])
+    E1[Registra actividad]
+    E2[/Adjunta evidencia/]
+    E3[Envía reporte]
+  end
+
+  subgraph TUT[Tutor / Profesor]
+    T1[Revisa reporte]
+    T2{¿Aprueba?}
+    T3[Valida horas]
+  end
+
+  subgraph COOR[Coordinación]
+    C1[Monitorea avances]
+    C2{¿Auditoría OK?}
+    C3[Resuelve inconsistencias]
+    C4([Fin Ciclo])
+  end
+
+  subgraph SYS[Sistema SC Web]
+    S1[(Base de Datos)]
+    S2[[Cola Revisión]]
+    S3[(Consolidado Horas)]
+    S4[[Alertas]]
+  end
+
+  %% Clases
+  class E0,E1,E3,T1,T3 human;
+  class E2 io;
+  class T2,C2 decision;
+  class C1,C3,C4 coord;
+  class S1,S3 data;
+  class S2,S4 system;
+
+  %% Flujo
+  E0 --> E1
+  E1 --> E2
+  E2 --> E3
+  E3 --> S1
+  S1 --> S2
+  S2 --> T1
+  T1 --> T2
+  T2 -->|No / Observaciones| E1
+  T2 -->|Sí| T3
+  T3 --> S3
+  S3 --> C1
+  C1 --> C2
+  C2 -->|Inconsistencias| C3
+  C3 --> T1
+  C2 -->|OK| C4
+
+  %% Notificaciones (Ancladas a eventos)
+  T2 -->|Estado Actualizado| S4
+  C2 -->|Validación Final| S4
+  S4 -.-> E0
+  S4 -.-> T1

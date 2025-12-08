@@ -1,0 +1,69 @@
+%% Diagrama 2: Gestión y aprobación de proyectos individuales
+%% Objetivo: Mostrar cómo cada estudiante registra su proyecto, se revisa y aprueba para ejecución.
+%% Roles: Estudiante, Coordinación, Tutor/Comité, Sistema, Autenticación.
+
+flowchart LR
+  %% Estilos
+  classDef human fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+  classDef coord fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+  classDef system fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+  classDef decision fill:#fff,stroke:#333,stroke-width:2px;
+  classDef io fill:#e0f7fa,stroke:#006064,stroke-width:2px,stroke-dasharray: 5 5;
+  classDef data fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,shape:cylinder;
+
+  subgraph EST[Estudiante]
+    P0([Inicio])
+    P1[/Registra propuesta/]
+    P2[Ajusta propuesta]
+    P3([Fin / Autorizado])
+  end
+
+  subgraph COOR[Coordinación]
+    C1{¿Requisitos básicos?}
+    C2{¿Es viable?}
+    C3[Asigna comité/tutor]
+    C4[Autoriza ejecución]
+  end
+
+  subgraph TUT[Tutor / Comité]
+    T1[Revisa objetivos]
+    T2{¿Dictamen?}
+  end
+
+  subgraph SYS[Sistema SC Web]
+    S1[[Formulario Proyecto]]
+    S2[[Workflow Revisión]]
+    S3[[Notificaciones]]
+  end
+
+  subgraph AUTH[Autenticación]
+    A1[[Verifica Identidad]]
+  end
+
+  %% Clases
+  class P0,P2,P3,T1 human;
+  class P1 io;
+  class C1,C2,T2 decision;
+  class C3,C4 coord;
+  class S1,S2,S3,A1 system;
+  class S4 data;
+
+  %% Flujo
+  P0 -->|Login| A1
+  A1 --> S1
+  S1 --> P1
+  P1 --> C1
+  C1 -->|Incompleto| P2
+  P2 --> P1
+  C1 -->|Completo| C2
+  C2 -->|No Viable| P2
+  C2 -->|Viable| C3
+  C3 --> T1
+  T1 --> T2
+  T2 -->|Rechazar| P2
+  T2 -->|Ajustar| P2
+  T2 -->|Aprobar| S2
+  S2 --> S3
+  S3 --> C4
+  C4 --> P3
+  S3 -->|Rechazo final| P2

@@ -1,5 +1,0 @@
-flowchart TD
-  Start((Open Dashboard)) -->  Load["GET /api/users/:id/progress"]
-  Load -->  Check{"Data available?"}
-  Check -- No -->  ShowEmpty["Show 'No progress' message"]
-  Check -- Yes -->  ShowTimeline["Render steps + progress bar"] -->  End((End))

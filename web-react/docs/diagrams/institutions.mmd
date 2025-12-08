@@ -1,8 +1,0 @@
-flowchart TD
-  Start((Open Institutions view)) -->  ClickNew["Click 'Nueva institución'"]
-  ClickNew -->  Fill["Fill institution details"]
-  Fill -->  Validate{"Data valid?"}
-  Validate -- Yes -->  POSTInst["POST /api/institutions (payload)"]
-  POSTInst -->  Resp{Server response}
-  Resp -- 201 -->  Created["Institution created"] -->  End((End))
-  Validate -- No -->  ShowError["Show validation errors"]

@@ -1,0 +1,77 @@
+%% Diagrama 1: Flujo macro TO-BE del Servicio Comunitario
+%% Objetivo: Visualizar de principio a fin el proceso desde postulación hasta certificación de horas.
+%% Roles: Estudiante, Tutor/Profesor, Coordinación, Sistema, Autenticación.
+
+flowchart LR
+  %% Estilos
+  classDef human fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+  classDef coord fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+  classDef system fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+  classDef data fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,shape:cylinder;
+  classDef decision fill:#fff,stroke:#333,stroke-width:2px;
+  classDef term fill:#e0e0e0,stroke:#333,stroke-width:2px;
+
+  subgraph EST[Estudiante]
+    E0([Inicio])
+    E1[Propone proyecto]
+    E2[Entrega/Ajusta plan]
+    E3[Ejecuta actividades]
+    E4[Reporta avances]
+    E5([Fin / Certificado])
+  end
+
+  subgraph TUT[Tutor / Profesor]
+    T1{¿Plan Viable?}
+    T2{¿Avances Válidos?}
+    T3[Emite aval]
+  end
+
+  subgraph COOR[Coordinación]
+    C1{¿Cumple Requisitos?}
+    C2[Asigna tutor]
+    C3{¿Auditoría OK?}
+    C4[Genera certificación]
+  end
+
+  subgraph SYS[Sistema SC Web]
+    S1[[Gestión Propuestas]]
+    S2[[Workflow Aprobación]]
+    S3[(Registro Horas/Evidencias)]
+    S4[[Reportes y Métricas]]
+  end
+
+  subgraph AUTH[Autenticación]
+    A1[[Verifica Identidad]]
+  end
+
+  %% Asignación de clases
+  class E0,E1,E2,E3,E4,E5,T3 human;
+  class T1,T2,C1,C3 decision;
+  class C2,C4 coord;
+  class S1,S2,S4 system;
+  class S3 data;
+  class A1 system;
+
+  %% Flujo principal
+  E0 -->|Login| A1
+  A1 -->|OK| S1
+  S1 --> E1
+  E1 --> C1
+  C1 -->|No / Ajustar| E2
+  E2 --> C1
+  C1 -->|Sí| C2
+  C2 -->|Asigna| T1
+  T1 -->|No / Observaciones| E2
+  T1 -->|Sí| S2
+  S2 -->|Notifica| E3
+  E3 --> E4
+  E4 --> S3
+  S3 --> T2
+  T2 -->|No / Corregir| E4
+  T2 -->|Sí| S3
+  S3 --> T3
+  T3 --> C3
+  C3 -->|No / Inconsistencias| T2
+  C3 -->|Sí| C4
+  C4 --> E5
+  C4 --> S4

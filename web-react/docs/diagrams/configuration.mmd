@@ -1,7 +1,0 @@
-flowchart TD
-  Start((Open Configuración)) --> EditProfile["Edit fields and click 'Guardar cambios'"]
-  EditProfile --> Validate{"Fields valid?"}
-  Validate -- No --> ShowErr["Show validation errors"]
-  Validate -- Yes --> PATCH["PATCH /api/users/:id/profile (payload)"]
-  PATCH --> Resp{Server response}
-  Resp -- 200 --> ShowSuccess["Show 'Perfil actualizado'"] --> End((End))
