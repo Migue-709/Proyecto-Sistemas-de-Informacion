@@ -1,0 +1,64 @@
+%% Diagrama 4: Control de acceso y perfiles
+%% Objetivo: Mostrar autenticación, validación de pertenencia y selección de rol.
+%% Roles: Usuario, Sistema, Autenticación, Módulos.
+
+flowchart LR
+  %% Estilos
+  classDef human fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+  classDef system fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+  classDef decision fill:#fff,stroke:#333,stroke-width:2px;
+  classDef data fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,shape:cylinder;
+  classDef mod fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+
+  subgraph USER[Usuario USM]
+    U0([Solicita acceso])
+    U1[/Ingresa credenciales/]
+    U2[Selecciona rol]
+    U3([Fin Sesión])
+  end
+
+  subgraph AUTH[Autenticación USM]
+    A1{¿Credenciales Válidas?}
+    A2[Retorna Atributos]
+  end
+
+  subgraph SYS[Sistema SC Web]
+    S1[[Pantalla Login]]
+    S2{¿Rol Activo?}
+    S3[Mapa Permisos]
+    S4{¿Qué Rol?}
+    S5[(Bitácora Acceso)]
+  end
+
+  subgraph MOD[Módulos]
+    M1[[Propuestas]]
+    M2[[Gestión Horas]]
+    M3[[Gestión Tutores]]
+    M4[[Auditoría]]
+  end
+
+  %% Clases
+  class U0,U2,U3 human;
+  class U1 human;
+  class A1,S2,S4 decision;
+  class A2,S1,S3 system;
+  class S5 data;
+  class M1,M2,M3,M4 mod;
+
+  %% Flujo
+  U0 --> S1
+  S1 --> U1
+  U1 --> A1
+  A1 -->|No| S1
+  A1 -->|Sí| A2
+  A2 --> S2
+  S2 -->|No / Error| U3
+  S2 -->|Sí| U2
+  U2 --> S3
+  S3 --> S4
+  S3 -.-> S5
+  
+  S4 -->|Estudiante| M1
+  S4 -->|Estudiante/Tutor| M2
+  S4 -->|Coordinación| M3
+  S4 -->|Autoridad| M4

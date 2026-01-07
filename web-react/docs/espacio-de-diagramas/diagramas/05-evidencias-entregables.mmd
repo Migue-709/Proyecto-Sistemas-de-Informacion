@@ -1,0 +1,66 @@
+%% Diagrama 5: Gestión de evidencias y entregables
+%% Objetivo: Describir carga, revisión y aceptación de evidencias.
+%% Roles: Estudiante, Tutor/Profesor, Coordinación, Sistema.
+
+flowchart LR
+  %% Estilos
+  classDef human fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+  classDef coord fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+  classDef system fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+  classDef decision fill:#fff,stroke:#333,stroke-width:2px;
+  classDef data fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,shape:cylinder;
+  classDef io fill:#e0f7fa,stroke:#006064,stroke-width:2px,stroke-dasharray: 5 5;
+
+  subgraph EST[Estudiante]
+    E0([Inicio / Actividad Lista])
+    E1[/Sube evidencia/]
+    E2[Corrige observaciones]
+    E3([Fin / Aceptado])
+  end
+
+  subgraph TUT[Tutor / Profesor]
+    T1[Revisa evidencia]
+    T2{¿Acepta?}
+  end
+
+  subgraph COOR[Coordinación]
+    C1[Revisa críticos]
+    C2[Escala casos]
+  end
+
+  subgraph SYS[Sistema SC Web]
+    S1[(Almacenamiento)]
+    S2[(Control Versiones)]
+    S3[(Cola Revisión)]
+    S4[(Log Decisiones)]
+    S5[[Notificaciones]]
+  end
+
+  %% Clases
+  class E0,E2,E3,T1 human;
+  class E1 io;
+  class T2 decision;
+  class C1,C2 coord;
+  class S1 data;
+  class S2,S4 data;
+  class S3,S5 system;
+
+  %% Flujo
+  E0 --> E1
+  E1 --> S1
+  S1 --> S2
+  S2 --> S3
+  S3 --> T1
+  T1 --> T2
+  T2 -->|No / Rechazo| E2
+  E2 --> E1
+  T2 -->|Sí / Acepta| S4
+  S4 --> S5
+  S4 --> C1
+  C1 -->|Observación| C2
+  C2 -->|Retorno| T1
+  C1 -->|OK| E3
+  
+  %% Notificaciones
+  S5 -.-> E0
+  S5 -.-> T1

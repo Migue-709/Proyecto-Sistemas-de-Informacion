@@ -1,0 +1,59 @@
+%% Diagrama 6: Generación de reportes y auditoría
+%% Objetivo: Mostrar cómo coordinación y autoridades obtienen métricas y bitácoras.
+%% Roles: Coordinación, Autoridades, Sistema.
+
+flowchart LR
+  %% Estilos
+  classDef coord fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+  classDef auth fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+  classDef system fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+  classDef decision fill:#fff,stroke:#333,stroke-width:2px;
+  classDef data fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,shape:cylinder;
+  classDef system fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+  classDef io fill:#e0f7fa,stroke:#006064,stroke-width:2px,stroke-dasharray: 5 5;
+
+  subgraph COOR[Coordinación]
+    C0([Inicio / Dashboard])
+    C1[Configura filtros]
+    C2[/Exporta reporte/]
+    C3[Revisa bitácora]
+  end
+
+  subgraph AUTH[Autoridades]
+    A0([Solicita Informe])
+    A1[Consulta KPI]
+    A2[/Descarga reporte/]
+    A3([Fin])
+  end
+
+  subgraph SYS[Sistema SC Web]
+    S1[[Motor Consultas]]
+    S2[[Generador PDF/CSV]]
+    S3[(Bitácora Auditoría)]
+    S4{¿Permiso?}
+  end
+
+  %% Clases
+  class C0,C1,C3 coord;
+  class C2 io;
+  class A0,A1,A3 auth;
+  class A2 io;
+  class S1,S2 system;
+  class S3 data;
+  class S4 decision;
+
+  %% Flujo Coordinación
+  C0 --> C1
+  C1 --> S1
+  S1 --> S2
+  S2 --> C2
+  S1 -.-> S3
+  S3 --> C3
+
+  %% Flujo Autoridades
+  A0 --> A1
+  A1 --> S4
+  S4 -->|No| A3
+  S4 -->|Sí| S1
+  S2 --> A2
+  A2 --> A3
