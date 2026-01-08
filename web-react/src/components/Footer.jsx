@@ -1,94 +1,126 @@
 import React from 'react';
-import xlogo from '../assets/images/xlogo.png';
-import instagramlogo from '../assets/images/instagramlogo.png';
+import { motion } from 'framer-motion';
+import logoNombre from '../assets/images/logoynombre.png';
+import instagramLogo from '../assets/images/instagramlogo.png';
+import xLogo from '../assets/images/xlogo.png';
 
 export default function FooterSection() {
+  const externalLinks = {
+    'Portal USM': 'https://usm.edu.ve/',
+    'Terna USM': 'https://usm.terna.net/',
+  };
+
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600 rounded-full blur-3xl" />
-      </div>
+      <footer className="bg-[#01327c] text-white py-16 px-6">
+      <div className="max-w-[1400px] mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+              <div className="mb-4">
+                <img
+                  src={logoNombre}
+                  alt="Universidad Santa María"
+                  className="h-28 w-auto"
+                />
+              </div>
+              <div className="flex items-center gap-4 mt-4 ml-8">
+                <a
+                  href="https://www.instagram.com/usm_vzla/?hl=es-la"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram USM"
+                >
+                  <img
+                    src={instagramLogo}
+                    alt="Instagram USM"
+                    className="h-7 w-7 object-contain"
+                  />
+                </a>
+                <a
+                  href="https://x.com/usm_vzla?t=Ewsxdb3msN2xLLYgrY5Zeg&s=09"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter USM"
+                >
+                  <img
+                    src={xLogo}
+                    alt="Twitter USM"
+                    className="h-7 w-7 object-contain"
+                  />
+                </a>
+              </div>
+          </motion.div>
 
-      <div className="max-w-6xl mx-auto px-6 py-14 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
-          <div>
-            <h3 className="mb-4 font-semibold text-white text-lg">Universidad Santa María</h3>
-            <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-              Sistema integral de gestión y control del servicio comunitario. Transformando la administración académica.
-            </p>
-            <div className="flex gap-3">
-              <a
-                href="https://twitter.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-blue-600 flex items-center justify-center transition-colors text-sm"
-              >
-                <img src={xlogo} alt="X" className="w-6 h-6" />
-              </a>
-              <a
-                href="https://instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-blue-600 flex items-center justify-center transition-colors text-sm"
-              >
-                <img src={instagramlogo} alt="Instagram" className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
+          {[
+            {
+              title: 'Enlaces Rápidos',
+              links: ['Portal USM', 'Terna USM', 'Normativas'],
+            },
+            {
+              title: 'Contacto',
+              links: [
+                'Coordinación de Servicio Comunitario',
+                'serviciocomunitario@usm.edu.ve',
+                '+58 (212) 555-0000',
+              ],
+            },
+          ].map((column, i) => (
+            <motion.div
+              key={column.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: (i + 1) * 0.1 }}
+            >
+              <h5 className="font-bold mb-4 text-white">{column.title}</h5>
+              <ul className="space-y-2 text-gray-100 text-sm">
+                {column.links.map((link) => {
+                  const href = externalLinks[link] || '#';
+                  const isExternal = Boolean(externalLinks[link]);
 
-          <div>
-            <h4 className="mb-4 font-semibold text-white text-base">Enlaces Rápidos</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Inicio</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Funcionalidades</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Guía de Uso</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Preguntas Frecuentes</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Soporte Técnico</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 font-semibold text-white text-base">Recursos</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Normativa Legal</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Manual del Usuario</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Tutoriales</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Políticas de Privacidad</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Términos de Uso</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 font-semibold text-white text-base">Contacto</h4>
-            <ul className="space-y-3 text-sm text-gray-300">
-              <li>
-                <span className="block text-gray-400 text-xs uppercase tracking-wide mb-1">Correo</span>
-                <span>servicio.comunitario@usm.edu.ve</span>
-              </li>
-              <li>
-                <span className="block text-gray-400 text-xs uppercase tracking-wide mb-1">Teléfono</span>
-                <span>+58 asifnanfjaf</span>
-              </li>
-              <li>
-                <span className="block text-gray-400 text-xs uppercase tracking-wide mb-1">Ubicación</span>
-                <span>Caracas, Venezuela</span>
-              </li>
-            </ul>
-          </div>
+                  return (
+                    <motion.li key={link} whileHover={{ x: 5 }}>
+                      <a
+                        href={href}
+                        className="hover:text-white transition-colors"
+                        {...(isExternal
+                          ? { target: '_blank', rel: 'noopener noreferrer' }
+                          : {})}
+                      >
+                        {link}
+                      </a>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </motion.div>
+          ))}
         </div>
 
-        <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-xs md:text-sm">
-            © 2025 Universidad Santa María. Todos los derechos reservados.
-          </p>
-          <div className="flex gap-5 text-xs md:text-sm text-gray-400">
-            <a href="#" className="hover:text-blue-400 transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-blue-400 transition-colors">Términos</a>
-            <a href="#" className="hover:text-blue-400 transition-colors">Cookies</a>
+          <div className="border-t border-white/20 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-100 text-sm">
+              © 2026 Universidad Santa María. Todos los derechos reservados.
+            </p>
+            <div className="flex gap-6 text-gray-100 text-sm">
+              {['Términos de Uso', 'Privacidad', 'Soporte Técnico'].map((item) => (
+                <motion.a
+                  key={item}
+                  href="#"
+                  whileHover={{ y: -2 }}
+                  className="hover:text-white transition-colors"
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+

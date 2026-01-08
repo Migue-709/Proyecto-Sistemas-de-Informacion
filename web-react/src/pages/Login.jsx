@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import fondoUsm from '../assets/images/fondousm.png';
-import logoUsmBlanco from '../assets/images/logousmblanco.png';
+import logoUsmBlanco from '../assets/images/blancousmlogo.png';
 
 
 export default function Login() {
@@ -23,7 +23,6 @@ export default function Login() {
     }
     setError('');
 
-    // Inicio de sesión exitoso simulado mientras tanto
     navigate('/dashboard');
   };
 

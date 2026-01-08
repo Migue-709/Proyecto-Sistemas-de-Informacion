@@ -1,9 +1,11 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/welcome/HeroSection';
-import FeaturesSection from '../components/welcome/FeaturesSection';
+import LegalInfoSection from '../components/welcome/LegalInfoSection';
 import ProcessStepsSection from '../components/welcome/ProcessStepsSection';
-import UserTypesSection from '../components/welcome/UserTypesSection';
+import SystemFeaturesSection from '../components/welcome/SystemFeaturesSection';
+import AvailableProjectsSection from '../components/welcome/AvailableProjectsSection';
+import AccessSystemSection from '../components/welcome/AccessSystemSection';
 import FooterSection from '../components/Footer';
 
 export default function Welcome() {
@@ -11,10 +13,15 @@ export default function Welcome() {
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
       <HeroSection />
-      <FeaturesSection />
+      <LegalInfoSection />
       <ProcessStepsSection />
-      <UserTypesSection />
+      <SystemFeaturesSection />
+      <AvailableProjectsSection />
+      <AccessSystemSection />
       <FooterSection />
     </div>
   );
 }
+
+
+
