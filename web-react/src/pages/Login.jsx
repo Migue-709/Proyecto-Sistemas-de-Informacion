@@ -23,6 +23,7 @@ export default function Login() {
     }
     setError('');
 
+    // Inicio de sesión exitoso simulado mientras tanto
     navigate('/dashboard');
   };
 

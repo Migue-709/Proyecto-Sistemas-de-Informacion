@@ -4,12 +4,10 @@ import TopBar from '../components/dashboard/TopBar';
 import StatsCards from '../components/dashboard/StatsCards';
 import ProgressTracker from '../components/dashboard/ProgressTracker';
 import QuickActions from '../components/dashboard/QuickActions';
-import UpcomingTasks from '../components/dashboard/UpcomingTasks';
 import RecentActivity from '../components/dashboard/RecentActivity';
 import DocumentsView from '../components/dashboard/DocumentsView';
-import ScheduleView from '../components/dashboard/ScheduleView';
+import ServiceProjectView from '../components/dashboard/ServiceProjectView';
 import InstitutionsView from '../components/dashboard/InstitutionsView';
-import ReportsView from '../components/dashboard/ReportsView';
 import ConfigurationView from '../components/dashboard/ConfigurationView';
 import HelpView from '../components/dashboard/HelpView';
 import NotificationsView from '../components/dashboard/NotificationsView';
@@ -20,14 +18,12 @@ export default function Dashboard() {
 
   const renderContent = () => {
     switch (activeSection) {
+      case 'serviceProject':
+        return <ServiceProjectView />;
       case 'documents':
         return <DocumentsView />;
-      case 'schedule':
-        return <ScheduleView />;
       case 'institutions':
         return <InstitutionsView />;
-      case 'reports':
-        return <ReportsView />;
       case 'configuration':
         return <ConfigurationView />;
       case 'help':
@@ -45,7 +41,6 @@ export default function Dashboard() {
                 <QuickActions />
               </div>
               <div className="space-y-6 lg:space-y-8">
-                <UpcomingTasks />
                 <RecentActivity />
               </div>
             </div>

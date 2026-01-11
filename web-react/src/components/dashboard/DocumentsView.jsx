@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Upload, FileText, Download, Eye, Trash2, CheckCircle, Clock, XCircle, Search } from 'lucide-react';
+import { FileText, Download, Eye, Trash2, CheckCircle, Clock, XCircle, Search } from 'lucide-react';
 
 export default function DocumentsView() {
   const [selectedFilter, setSelectedFilter] = useState('all');
@@ -53,8 +53,12 @@ export default function DocumentsView() {
   return (
     <div className="max-w-[1600px] mx-auto p-8 space-y-8">
       <div>
-        <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Gestión de Documentos</h1>
-        <p className="text-gray-600 dark:text-gray-400">Administra los documentos de tu proyecto de Servicio Comunitario.</p>
+        <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Historial de Documentos</h1>
+        <p className="text-gray-600 dark:text-gray-400">
+          Aquí podrás ver un resumen de los documentos que has enviado en el marco de tu Servicio
+          Comunitario. La carga del anteproyecto y del proyecto final se realiza desde la sección
+          "Entregas del Proyecto".
+        </p>
       </div>
 
       <div className="grid md:grid-cols-4 gap-6">
@@ -78,28 +82,6 @@ export default function DocumentsView() {
           </motion.div>
         ))}
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 border border-blue-200 dark:border-blue-700/50"
-      >
-        <div className="flex items-center justify-between flex-wrap gap-4">
-          <div>
-            <h3 className="text-gray-900 dark:text-white mb-2 text-xl font-semibold">Subir Nuevo Documento</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">Formatos permitidos: PDF, DOC, DOCX, JPG, PNG (Máx. 10MB).</p>
-          </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/30 dark:shadow-blue-500/20 hover:shadow-xl transition-all"
-          >
-            <Upload size={20} />
-            <span>Subir Documento</span>
-          </motion.button>
-        </div>
-      </motion.div>
 
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-2 flex-wrap">

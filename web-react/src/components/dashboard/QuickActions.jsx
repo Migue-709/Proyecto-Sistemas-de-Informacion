@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Upload, Calendar, FileText, MessageSquare } from 'lucide-react';
+import { Upload, MessageSquare } from 'lucide-react';
 
 function QuickAction({ icon: Icon, title, description, gradient, index }) {
   return (
@@ -29,10 +29,18 @@ function QuickAction({ icon: Icon, title, description, gradient, index }) {
 
 export default function QuickActions() {
   const actions = [
-    { icon: Upload, title: 'Subir Documento', description: 'Carga documentos requeridos', gradient: 'from-blue-500 to-blue-600' },
-    { icon: Calendar, title: 'Agendar Actividad', description: 'Programa tu próxima sesión', gradient: 'from-purple-500 to-purple-600' },
-    { icon: FileText, title: 'Nuevo Reporte', description: 'Crea un reporte de avance', gradient: 'from-green-500 to-green-600' },
-    { icon: MessageSquare, title: 'Solicitar Ayuda', description: 'Contacta a tu coordinador', gradient: 'from-pink-500 to-pink-600' },
+    {
+      icon: Upload,
+      title: 'Subir Documento',
+      description: 'Carga documentos requeridos para tu servicio comunitario',
+      gradient: 'from-blue-500 to-blue-600',
+    },
+    {
+      icon: MessageSquare,
+      title: 'Solicitar Ayuda',
+      description: 'Contacta a tu coordinador o tutor académico',
+      gradient: 'from-pink-500 to-pink-600',
+    },
   ];
 
   return (

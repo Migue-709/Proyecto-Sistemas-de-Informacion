@@ -1,17 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { User, Bell, Lock, Eye, EyeOff, Monitor, Moon, Sun } from 'lucide-react';
+import { User, Bell, Lock, Eye, EyeOff, Monitor } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 
-export default function ConfigurationView() {
+export default function AdminConfigurationView() {
   const { darkMode, toggleDarkMode } = useTheme();
   const [showPassword, setShowPassword] = useState(false);
   const [notifications, setNotifications] = useState({
-    email: true,
-    push: false,
-    activities: true,
-    deadlines: true,
-    reports: false,
+    approvals: true,
+    audit: true,
   });
 
   const [profileImage, setProfileImage] = useState(null);
@@ -28,12 +25,13 @@ export default function ConfigurationView() {
   return (
     <div className="max-w-[1200px] mx-auto p-8 space-y-8">
       <div>
-        <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Configuración</h1>
-        <p className="text-gray-600 dark:text-gray-400">Personaliza tu experiencia y preferencias del sistema.</p>
+        <h1 className="text-gray-900 dark:text-white mb-2 font-bold text-2xl">Configuración del panel</h1>
+        <p className="text-gray-600 dark:text-gray-400">
+          Ajusta las preferencias del Panel de Autoridades para adaptar la experiencia a tu rol.
+        </p>
       </div>
 
       <div className="space-y-6">
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,16 +47,9 @@ export default function ConfigurationView() {
           <div className="space-y-6 text-sm">
             <div className="flex items-center justify-between py-4 border-b border-gray-200 dark:border-gray-700 gap-4">
               <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  {darkMode ? (
-                    <Moon className="text-blue-600 dark:text-blue-400" size={18} />
-                  ) : (
-                    <Sun className="text-blue-600 dark:text-blue-400" size={18} />
-                  )}
-                  <p className="text-gray-900 dark:text-white font-medium">Modo oscuro</p>
-                </div>
+                <p className="text-gray-900 dark:text-white font-medium mb-1">Modo oscuro</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400">
-                  Activa el tema oscuro para reducir la fatiga visual en entornos con poca luz.
+                  Activa el tema oscuro para reducir la fatiga visual al revisar proyectos y reportes.
                 </p>
               </div>
               <button
@@ -88,20 +79,16 @@ export default function ConfigurationView() {
             <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
               <User className="text-blue-600 dark:text-blue-400" size={24} />
             </div>
-            <h2 className="text-gray-900 dark:text-white">Perfil de usuario</h2>
+            <h2 className="text-gray-900 dark:text-white">Perfil de autoridad</h2>
           </div>
 
           <div className="space-y-6">
             <div className="flex items-center gap-6 flex-wrap">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center text-2xl font-semibold overflow-hidden">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center text-xl font-semibold overflow-hidden">
                 {profileImage ? (
-                  <img
-                    src={profileImage}
-                    alt="Foto de perfil"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={profileImage} alt="Foto de perfil" className="w-full h-full object-cover" />
                 ) : (
-                  <span>U</span>
+                  <span>A</span>
                 )}
               </div>
               <div>
@@ -125,93 +112,37 @@ export default function ConfigurationView() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mt-4">
+            <div className="grid md:grid-cols-2 gap-6 mt-4 text-sm">
               <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Nombres</label>
+                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Nombre completo</label>
                 <input
                   type="text"
-                  placeholder="Nombres del estudiante"
+                  placeholder="Nombre de la autoridad"
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Apellidos</label>
+                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Cargo</label>
                 <input
                   type="text"
-                  placeholder="Apellidos del estudiante"
+                  placeholder="Rector, Decano, Coordinador..."
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">C.I.</label>
-                <input
-                  type="text"
-                  placeholder="Documento de identidad"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Correo electrónico</label>
+                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Correo institucional</label>
                 <input
                   type="email"
-                  placeholder="correo@usm.edu.ve"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
+                  placeholder="autoridad@usm.edu.ve"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Teléfono principal</label>
-                <input
-                  type="tel"
-                  placeholder="Número de contacto principal"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Teléfono secundario (opcional)</label>
-                <input
-                  type="tel"
-                  placeholder="Otro número de contacto"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Facultad</label>
+                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Dependencia</label>
                 <input
                   type="text"
-                  placeholder="Facultad a la que pertenece"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Escuela</label>
-                <input
-                  type="text"
-                  placeholder="Escuela o departamento académico"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Semestre</label>
-                <input
-                  type="text"
-                  placeholder="Ej: 7mo, 8vo, 9no..."
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Turno</label>
-                <input
-                  type="text"
-                  placeholder="Diurno, Nocturno..."
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Sección</label>
-                <input
-                  type="text"
-                  placeholder="Sección (nose)"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus-border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
+                  placeholder="Rectorado, Decanato, Escuela..."
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
                 />
               </div>
             </div>
@@ -220,12 +151,12 @@ export default function ConfigurationView() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/30 dark:shadow-blue-500/20 text-sm"
+              type="button"
             >
               Guardar cambios (placeholder)
             </motion.button>
           </div>
         </motion.div>
-
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -237,46 +168,49 @@ export default function ConfigurationView() {
             <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
               <Bell className="text-blue-600 dark:text-blue-400" size={24} />
             </div>
-            <h2 className="text-gray-900 dark:text-white">Notificaciones</h2>
+            <h2 className="text-gray-900 dark:text-white">Preferencias de avisos</h2>
           </div>
 
           <div className="space-y-6 text-sm">
             <div className="flex items-center justify-between py-4 border-b border-gray-200 dark:border-gray-700 gap-4">
               <div>
-                <p className="text-gray-900 dark:text-white mb-1">Notificaciones por correo</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">Recibir resúmenes e información importante en tu bandeja.</p>
+                <p className="text-gray-900 dark:text-white mb-1">Cambios en proyectos de servicio</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">
+                  Recibe avisos cuando un proyecto se envíe, apruebe o rechace.
+                </p>
               </div>
               <button
                 type="button"
-                onClick={() => setNotifications({ ...notifications, email: !notifications.email })}
+                onClick={() => setNotifications((prev) => ({ ...prev, approvals: !prev.approvals }))}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notifications.email ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'
+                  notifications.approvals ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'
                 }`}
               >
                 <span
                   className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    notifications.email ? 'translate-x-6' : 'translate-x-1'
+                    notifications.approvals ? 'translate-x-6' : 'translate-x-1'
                   }`}
                 />
               </button>
             </div>
 
-
-            <div className="flex items-center justify-between py-4 border-b border-gray-200 dark:border-gray-700 gap-4">
+            <div className="flex items-center justify-between py-4 gap-4">
               <div>
-                <p className="text-gray-900 dark:text-white mb-1">Recordatorios de fechas límite</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">Avisos antes de entregas importantes o cierres de periodo.</p>
+                <p className="text-gray-900 dark:text-white mb-1">Alertas del historial de cambios</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">
+                  Notificaciones cuando se registren acciones relevantes en el historial.
+                </p>
               </div>
               <button
                 type="button"
-                onClick={() => setNotifications({ ...notifications, deadlines: !notifications.deadlines })}
+                onClick={() => setNotifications((prev) => ({ ...prev, audit: !prev.audit }))}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notifications.deadlines ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'
+                  notifications.audit ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'
                 }`}
               >
                 <span
                   className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    notifications.deadlines ? 'translate-x-6' : 'translate-x-1'
+                    notifications.audit ? 'translate-x-6' : 'translate-x-1'
                   }`}
                 />
               </button>
@@ -294,7 +228,7 @@ export default function ConfigurationView() {
             <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
               <Lock className="text-blue-600 dark:text-blue-400" size={24} />
             </div>
-            <h2 className="text-gray-900 dark:text-white">Seguridad</h2>
+            <h2 className="text-gray-900 dark:text-white">Seguridad de la cuenta</h2>
           </div>
 
           <div className="space-y-6 text-sm">
@@ -308,8 +242,8 @@ export default function ConfigurationView() {
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -320,7 +254,7 @@ export default function ConfigurationView() {
               <div>
                 <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Nueva contraseña</label>
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
                 />
@@ -328,7 +262,7 @@ export default function ConfigurationView() {
               <div>
                 <label className="block text-sm text-gray-700 dark:text-gray-300 mb-2">Confirmar nueva contraseña</label>
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/50 outline-none transition-all"
                 />
@@ -338,24 +272,11 @@ export default function ConfigurationView() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/30 dark:shadow-blue-500/20 text-sm"
+              type="button"
+              className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm"
             >
-              Actualizar contraseña
+              Actualizar contraseña (placeholder)
             </motion.button>
-
-            <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h4 className="text-gray-900 dark:text-white mb-2">Autenticación de dos factores</h4>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">
-                No disponible actualmente.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs border border-dashed border-gray-300 dark:border-gray-600 cursor-default"
-              >
-                2FA no disponible aún
-              </motion.button>
-            </div>
           </div>
         </motion.div>
       </div>

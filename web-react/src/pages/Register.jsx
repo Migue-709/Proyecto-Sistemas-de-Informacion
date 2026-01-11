@@ -147,6 +147,7 @@ export default function Register() {
           </div>
         )}
 
+        {/* Formulario Coordinadores*/}
         {userType === 'docente' && (
           <div className="w-full">
             <h2 className="text-2xl font-bold text-[#1746b0] mb-1 text-center">Registro de Personal Docente</h2>
@@ -248,7 +249,7 @@ export default function Register() {
             </form>
           </div>
         )}
-
+          {/* Boton al login */}
           <div className="mt-4 text-center flex flex-col gap-2 items-center">
             <div>
               <span className="text-sm text-gray-700">¿Ya tienes una cuenta? </span>
