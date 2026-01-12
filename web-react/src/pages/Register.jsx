@@ -49,7 +49,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#edf4fe] relative flex">
+    <div className="h-screen w-full bg-[#edf4fe] relative flex overflow-hidden">
       <button
         className="absolute top-4 left-4 bg-[#1746b0] hover:bg-[#1746b0]/90 text-white font-semibold rounded-xl px-6 py-2 text-sm shadow transition-colors"
         onClick={() => navigate('/')}

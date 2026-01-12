@@ -28,7 +28,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#edf4fe] relative flex">
+    <div className="h-screen w-full bg-[#edf4fe] relative flex overflow-hidden">
 
       <button
         className="absolute top-4 left-4 bg-[#1746b0] hover:bg-[#1746b0]/90 text-white font-semibold rounded-xl px-6 py-2 text-sm shadow transition-colors"
@@ -55,8 +55,8 @@ export default function Login() {
         </div>
       </div>
 
-      <div className="flex-1 bg-[#f5f5f5] flex items-center justify-center p-8">
-        <div className="w-full flex flex-col justify-center">
+      <div className="flex-1 bg-[#f5f5f5] flex items-center justify-center p-8 overflow-y-auto">
+        <div className="w-full max-w-3xl flex flex-col justify-center">
           <h2 className="text-2xl font-bold text-[#1746b0] mb-1 text-center">Iniciar Sesión</h2>
           <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
           <input
