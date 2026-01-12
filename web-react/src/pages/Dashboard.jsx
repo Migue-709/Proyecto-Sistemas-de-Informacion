@@ -34,14 +34,14 @@ export default function Dashboard() {
       default:
         return (
           <div className="w-full max-w-[1600px] mx-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8 space-y-6 lg:space-y-8">
-            <StatsCards />
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
               <div className="space-y-6 lg:space-y-8 lg:col-span-2">
                 <ProgressTracker />
-                <QuickActions />
+                <QuickActions onSectionChange={setActiveSection} />
               </div>
               <div className="space-y-6 lg:space-y-8">
                 <RecentActivity />
+                <StatsCards />
               </div>
             </div>
           </div>

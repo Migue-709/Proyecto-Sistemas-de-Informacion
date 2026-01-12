@@ -4,7 +4,7 @@ import { BarChart3, Clock, Award, BookOpen, CheckCircle } from 'lucide-react';
 
 export default function SystemFeaturesSection() {
   return (
-    <section id="requisitos" className="py-24 px-6 bg-white">
+    <section id="funcionalidades" className="py-24 px-6 bg-white">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

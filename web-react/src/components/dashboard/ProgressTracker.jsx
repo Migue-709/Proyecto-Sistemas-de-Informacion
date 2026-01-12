@@ -70,15 +70,14 @@ export default function ProgressTracker() {
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-gray-900 dark:text-white mb-1">Progreso del Servicio</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Seguimiento de tus actividades y logros</p>
+          <h3 className="text-gray-900 dark:text-white mb-1">Resumen del Servicio</h3>
         </div>
       </div>
 
       {steps.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-8">
           <AlertCircle className="text-blue-400 dark:text-blue-500 mb-2" size={32} />
-          <p className="text-gray-500 dark:text-gray-400 text-center">Aún no has iniciado el servicio comunitario.<br/>Cuando lo hagas, verás tu progreso aquí.</p>
+          <p className="text-gray-500 dark:text-gray-400 text-center">Aún no has iniciado el servicio comunitario.<br/>Cuando lo hagas, verás tu resumen aquí.</p>
         </div>
       ) : (
         <div className="space-y-1">

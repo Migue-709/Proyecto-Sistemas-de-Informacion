@@ -96,11 +96,6 @@ function TopBar({ onSectionChange, onToggleSidebar }) {
                     <p className="text-xs text-gray-600 dark:text-gray-400">usuario@usm.edu.ve</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex-1 h-2 bg-blue-100 dark:bg-blue-900/50 rounded-full overflow-hidden">
-                  </div>
-                  <span className="text-xs text-blue-500 dark:text-blue-400">--%</span>
-                </div>
               </div>
 
               <div className="p-2">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, CheckCircle2, Target, TrendingUp, ArrowUp } from 'lucide-react';
+import { TrendingUp, ArrowUp } from 'lucide-react';
 
 function StatCard({ icon: Icon, title, value, change, changeType, gradient, iconBg, index }) {
   return (
@@ -39,50 +39,19 @@ function StatCard({ icon: Icon, title, value, change, changeType, gradient, icon
 }
 
 export default function StatsCards() {
-  const stats = [
-    {
-      icon: Clock,
-      title: 'Horas Completadas',
-      value: 'X / Y',
-      change: '+N',
-      changeType: 'up',
-      gradient: 'from-blue-500 to-blue-600',
-      iconBg: 'from-blue-500 to-blue-600',
-    },
-    {
-      icon: CheckCircle2,
-      title: 'Tareas Completadas',
-      value: 'X / Y',
-      change: '+N',
-      changeType: 'up',
-      gradient: 'from-green-500 to-green-600',
-      iconBg: 'from-green-500 to-green-600',
-    },
-    {
-      icon: Target,
-      title: 'Progreso General',
-      value: 'XX%',
-      change: '+N%',
-      changeType: 'up',
-      gradient: 'from-purple-500 to-purple-600',
-      iconBg: 'from-purple-500 to-purple-600',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Días Transcurridos',
-      value: 'N',
-      change: '±N',
-      changeType: 'up',
-      gradient: 'from-orange-500 to-orange-600',
-      iconBg: 'from-orange-500 to-orange-600',
-    },
-  ];
+  const stat = {
+    icon: TrendingUp,
+    title: 'Días transcurridos desde el inicio del período',
+    value: 'N',
+    change: '±N',
+    changeType: 'up',
+    gradient: 'from-orange-500 to-orange-600',
+    iconBg: 'from-orange-500 to-orange-600',
+  };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {stats.map((stat, index) => (
-        <StatCard key={index} {...stat} index={index} />
-      ))}
+    <div className="grid grid-cols-1 gap-6">
+      <StatCard {...stat} index={0} />
     </div>
   );
 }

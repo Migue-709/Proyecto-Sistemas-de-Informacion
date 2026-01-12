@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -47,7 +47,26 @@ function NavItem({ icon: Icon, label, active, badge, onClick }) {
 }
 
 export default function Sidebar({ activeSection, onSectionChange }) {
-  const [activeItem, setActiveItem] = useState(activeSection || 'dashboard');
+  const sectionToItem = (section) => {
+    const map = {
+      overview: 'dashboard',
+      serviceProject: 'serviceProject',
+      documents: 'documents',
+      institutions: 'institutions',
+      configuration: 'configuration',
+      help: 'help',
+    };
+    return map[section] || 'dashboard';
+  };
+
+  const [activeItem, setActiveItem] = useState(() => sectionToItem(activeSection));
+
+  useEffect(() => {
+    const mapped = sectionToItem(activeSection);
+    if (mapped !== activeItem) {
+      setActiveItem(mapped);
+    }
+  }, [activeSection]);
   const navigate = useNavigate();
 
   const mainNavItems = [
@@ -130,20 +149,6 @@ export default function Sidebar({ activeSection, onSectionChange }) {
       </nav>
 
       <div className="p-4 border-t border-gray-200 dark:border-gray-700 relative z-10">
-        <div className="mb-4 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 border border-blue-200/50 dark:border-blue-700/50">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="flex-1">
-              <p className="text-xs text-blue-600 dark:text-blue-400 mb-1">Progreso Total</p>
-              <p className="text-blue-400 dark:text-blue-500 italic">Sin datos</p>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-800/50 dark:to-blue-700/50 flex items-center justify-center">
-              <span className="text-blue-300 dark:text-blue-400 text-xs">--%</span>
-            </div>
-          </div>
-          <div className="w-full h-2 bg-blue-200 dark:bg-blue-900/30 rounded-full overflow-hidden">
-          </div>
-        </div>
-
         <motion.button
           whileHover={{ x: 4 }}
           whileTap={{ scale: 0.98 }}
